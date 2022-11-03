@@ -1,0 +1,37 @@
+<h3>詳細</h3>
+
+<table>
+  <tr>
+    <th>タイトル</th>
+    <td><%= @post.title %></td>
+  </tr>
+  <tr>
+    <th>開始日</th>
+    <td><%= @post.start %></td>
+  </tr>
+  <tr>
+    <th>投稿日時</th>
+    <td><%= @post.created_at.to_s(:datetime_jp) %></td>
+  </tr>
+  <tr>
+    <th>終日</th>
+    <td>
+        <% if @post.day == true %>
+         <%= "○" %>
+         <% end %></td>
+  </tr>
+  <th>メモ</th>
+    <td><%= @post.memo %>
+  </td>
+</table>
+
+<div>
+  <ul><li><%= link_to "一覧に戻る", :posts %></li></ul>
+  <ul><li><%= link_to "編集", [:edit, @post] %></li></ul>
+  <ul><li><%= link_to "削除", @post, data: { turbo_method: :delete, turbo_confirm: "削除しますか？" } %></li></ul>
+  
+</div>
+
+<footer>
+  <%= render "shared/partial" %>
+</footer>

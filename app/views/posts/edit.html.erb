@@ -1,0 +1,41 @@
+<h3>編集</h3>
+
+<%= render "shared/error", obj: @post %>
+
+<%= form_with model: @post do |f| %>
+  <table>
+    <tr>
+      <th><%= f.label :title ,"タイトル" %></th>
+      <td><%= f.text_field :title %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :start ,"開始日" %></th>
+      <td><input type="date" name="post[start]" id="start" ></td>
+    </tr>
+    <tr>
+      <th><%= f.label :finish ,"終了日" %></th>
+      <td><input type="date" name="post[finish]" id="finish" data-form-type="date"></td>
+    </tr>
+    <tr>
+      <th><%= f.label :day ,"終日" %></th>
+      <td><input name="post[day]" type="hidden" value="0"><input type="checkbox" value="1" name="post[day]" id="day" data-form-type="date">終日の場合はチェックを入れます</td>
+      
+    </tr>
+    <tr>
+      <th><%= f.label :memo ,"メモ" %></th>
+      <td><%= f.text_area :memo %></td>
+      <!--<td><textarea class="posts-content" name="post[memo]" id="memo" data-form-type="other"></textarea></td>-->
+    </tr>
+  </table>
+
+  <div>
+    <ul>
+      <li><%= f.submit "編集を完了する" %></li>
+      <li><%= link_to "一覧に戻る", :posts %></li>
+    </ul>
+  </div>
+<% end %>
+
+<footer>
+  <%= render "shared/partial" %>
+</footer>
