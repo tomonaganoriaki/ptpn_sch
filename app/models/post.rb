@@ -4,13 +4,12 @@ class Post < ApplicationRecord
   validates :start, presence: true
   validates :finish, presence: true
   validates :memo, length: {maximum:5}
-
   validate :start_finish_check
  
   def start_finish_check
-      if self.finish < self.start
-       errors.add(:finish, "は開始日より前の日付は登録できません。") 
-      end
+    if start.present? && finish.present? && start >= finish
+     errors.add(:finish, "は開始日より前の日付は登録できません。") 
+    end
   end
 
 end

@@ -1,5 +1,9 @@
 <h3>編集</h3>
 
+ <% if flash[:notice] %>
+   <p class="notice"><%= flash[:notice] %></p>
+ <% end %>
+
 <%= render "shared/error", obj: @post %>
 
 <%= form_with model: @post do |f| %>
@@ -10,15 +14,18 @@
     </tr>
     <tr>
       <th><%= f.label :start ,"開始日" %></th>
-      <td><input type="date" name="post[start]" id="start" ></td>
+      <td><%= f.date_field :start %></td>
     </tr>
     <tr>
       <th><%= f.label :finish ,"終了日" %></th>
-      <td><input type="date" name="post[finish]" id="finish" data-form-type="date"></td>
+       <td><%= f.date_field :finish %></td>
     </tr>
     <tr>
       <th><%= f.label :day ,"終日" %></th>
-      <td><input name="post[day]" type="hidden" value="0"><input type="checkbox" value="1" name="post[day]" id="day" data-form-type="date">終日の場合はチェックを入れます</td>
+      <td>
+              <%= f.check_box :day %>終日の場合はチェックを入れます
+          </td>
+      <!--<td><input name="post[day]" type="hidden" value="0"><input type="checkbox" value="1" name="post[day]" id="day" data-form-type="date">終日の場合はチェックを入れます</td>-->
       
     </tr>
     <tr>

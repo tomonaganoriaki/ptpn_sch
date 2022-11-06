@@ -1,10 +1,10 @@
 <h3>一覧</h3>
 
- <% if flash[:notice] %>
-   <p class="notice"><%= flash[:notice] %></p>
- <% end %>
-
-
+<% if flash[:success] %>
+  <p class="alert_success"><%= flash[:success] %></p>
+<% else flash[:delete] %>
+  <p class="alert_delete"><%= flash[:delete] %></p>
+<% end %>
 
 <table>
   <thead>
@@ -26,16 +26,16 @@
       <tr>
         <td><%= post.id %></td>
         <td><%= post.title %></td>
-        <td><%= post.start %></td>
-        <td><%= post.finish %></td>
+        <td><%= post&.start&.strftime("%Y年 %m月 %d日") %></td>
+        <td><%= post&.finish&.strftime("%Y年 %m月 %d日") %></td>
         <td>
           <% if post.day == true %>
           <%= "○" %>
+          <% else post.day == false %>
+
           <% end %></td>
         </td>
-
         <td><%= post.updated_at.to_s(:datetime_jp) %></td>
-
         <td><%= link_to "確認", post %></td>
         <td><%= link_to "編集", [:edit, post] %></td>
         <td><%= link_to "削除", post, data: {turbo_method: :delete, turbo_confirm: "本当に削除しますか？"} %></td>

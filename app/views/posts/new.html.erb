@@ -1,4 +1,9 @@
+
 <h3>新規作成</h3>
+
+<% if flash[:alert] %>
+  <p class="alert delete"><%= flash[:alert] %></p>
+<% end %>
 
 <%= render "shared/error", obj: @post %>
 
@@ -33,6 +38,7 @@
     </ul>
   </div>
 <% end %>
+
 
 <footer>
   <%= render "shared/partial" %>
