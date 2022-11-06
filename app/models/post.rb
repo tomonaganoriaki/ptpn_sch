@@ -5,14 +5,9 @@ class Post < ApplicationRecord
   validates :finish, presence: true
   validates :memo, length: {maximum:50}
 
-  validate :startday
+
   validate :start_finish_check
 
-  def startday
-    if start.present? && finish.present? && start > Date.current
-    errors.add(:start, "は今日以降のものを選択してください") 
-    end
-  end 
  
   def start_finish_check
     if start.present? && finish.present? && start >= finish
