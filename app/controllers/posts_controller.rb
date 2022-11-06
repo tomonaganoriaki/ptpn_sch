@@ -5,6 +5,11 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new 
+    if @post.save
+      redirect_to :posts
+    elsif
+      render "new", status: :unprocessable_entity
+    end
   end
 
   def create
@@ -12,8 +17,8 @@ class PostsController < ApplicationController
     if @post.save
       flash[:success] = "新規登録しました"
       redirect_to :posts
-    else
-      flash[:delete] = "登録できませんでした"
+    elsif
+      flash.now[:delete] = "登録できませんでした"
       render "new", status: :unprocessable_entity
     end
   end

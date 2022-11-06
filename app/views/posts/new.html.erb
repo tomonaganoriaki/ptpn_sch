@@ -1,43 +1,43 @@
+<div class=main_container>
+  <h3>新規作成</h3>
 
-<h3>新規作成</h3>
+  <% if flash[:delete] %>
+    <p class="alert_delete"><%= flash[:delete] %></p>
+    <%= render "shared/error", obj: @post %>
+   <% end %>  
 
-<% if flash[:alert] %>
-  <p class="alert delete"><%= flash[:alert] %></p>
-<% end %>
+  <%= form_with model: @post do |f| %>
+    <table>
+      <tr>
+        <th><%= f.label :title ,"タイトル" %></th>
+        <td><%= f.text_field :title %></td>
+      </tr>
+      <tr>
+       <th><%= f.label :start ,"開始日" %></th>
+       <td><%= f.date_field :start %></td>
+      </tr>
+      <tr>
+       <th><%= f.label :finish ,"終了日" %></th>
+       <td><%= f.date_field :finish %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :day ,"終日" %></th>
+        <td><input name="post[day]" type="hidden" value="0"><input type="checkbox" value="1" name="post[day]" id="day" data-form-type="date">終日の場合はチェックを入れます</td>
+      </tr>
+     <tr>
+        <th><%= f.label :memo ,"メモ" %></th>
+       <td class=memo><%= f.text_area :memo %></td>
+      </tr>
+    </table>
 
-<%= render "shared/error", obj: @post %>
-
-<%= form_with model: @post do |f| %>
-  <table>
-    <tr>
-      <th><%= f.label :title ,"タイトル" %></th>
-      <td><%= f.text_field :title %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :start ,"開始日" %></th>
-      <td><%= f.date_field :start %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :finish ,"終了日" %></th>
-      <td><%= f.date_field :finish %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :day ,"終日" %></th>
-      <td><input name="post[day]" type="hidden" value="0"><input type="checkbox" value="1" name="post[day]" id="day" data-form-type="date">終日の場合はチェックを入れます</td>
-    </tr>
-    <tr>
-      <th><%= f.label :memo ,"メモ" %></th>
-      <td><%= f.text_area :memo %></td>
-    </tr>
-  </table>
-
-  <div>
-    <ul>
-      <li><%= f.submit "登録完了する"%></li>
-      <li><%= link_to "一覧に戻る", :posts %></li>
-    </ul>
-  </div>
-<% end %>
+   <div>
+      <ul>
+        <li><%= f.submit "登録完了する"%></li>
+        <li><%= link_to "一覧に戻る", :posts %></li>
+       </ul>
+   </div>
+  <% end %>
+</div>
 
 
 <footer>

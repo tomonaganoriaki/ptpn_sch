@@ -1,3 +1,4 @@
+<div class=main_container>
 <h3>編集</h3>
 
  <% if flash[:notice] %>
@@ -24,14 +25,11 @@
       <th><%= f.label :day ,"終日" %></th>
       <td>
               <%= f.check_box :day %>終日の場合はチェックを入れます
-          </td>
-      <!--<td><input name="post[day]" type="hidden" value="0"><input type="checkbox" value="1" name="post[day]" id="day" data-form-type="date">終日の場合はチェックを入れます</td>-->
-      
+          </td>      
     </tr>
     <tr>
       <th><%= f.label :memo ,"メモ" %></th>
       <td><%= f.text_area :memo %></td>
-      <!--<td><textarea class="posts-content" name="post[memo]" id="memo" data-form-type="other"></textarea></td>-->
     </tr>
   </table>
 
@@ -42,6 +40,7 @@
     </ul>
   </div>
 <% end %>
+</div>
 
 <footer>
   <%= render "shared/partial" %>
